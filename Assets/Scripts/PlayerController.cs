@@ -1,8 +1,9 @@
-using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    #region Fields
+
     private Rigidbody2D rb2d;
     private SurfaceEffector2D _surfaceEffector;
 
@@ -12,7 +13,12 @@ public class PlayerController : MonoBehaviour
 
     private readonly float _torque = 2f;
 
-    private bool _canMove = true;
+    private bool _isControlEnabled = true;
+
+    #endregion
+
+    #region MonoBehaviour
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -21,14 +27,18 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (_canMove)
+        if (_isControlEnabled)
         {
             RotatePlayer();
-            BoostPlayer();
+            BoostPlayerSpeed();
         }
     }
 
-    private void BoostPlayer()
+    #endregion
+
+    #region Methods
+
+    private void BoostPlayerSpeed()
     {
         if (rb2d.velocity.magnitude < _boostedSpeed && Input.GetKey(KeyCode.UpArrow))
         {
@@ -52,8 +62,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void CantMove()
+    public void DisableControls()
     {
-        _canMove = false;
+        _isControlEnabled = false;
     }
+
+    #endregion Methods
 }

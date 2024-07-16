@@ -3,9 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class FinishLine : MonoBehaviour
 {
+    #region Fields
     [SerializeField] private ParticleSystem _finishEffect;
 
     private readonly float _sceneReloadDelay = 3f;
+
+    #endregion Fields
+
+    #region MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,8 +22,14 @@ public class FinishLine : MonoBehaviour
         }
     }
 
+    #endregion MonoBehaviour
+
+    #region Methods
+
     private void ReloadTheScene()
     {
         SceneManager.LoadScene(0);
     }
+
+    #endregion Methods
 }
