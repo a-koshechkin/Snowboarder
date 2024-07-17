@@ -18,7 +18,7 @@ public class FinishLine : MonoBehaviour
         {
            GetComponent<AudioSource>().Play();
             _finishEffect.Play();
-            Invoke(nameof(ReloadTheScene), _sceneReloadDelay);
+            Invoke(nameof(LevelSuccess), _sceneReloadDelay);
         }
     }
 
@@ -26,7 +26,7 @@ public class FinishLine : MonoBehaviour
 
     #region Methods
 
-    private void ReloadTheScene()
+    private void LevelSuccess()
     {
         SceneManager.LoadScene(0);
     }

@@ -4,7 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     #region Fields
 
-    private Rigidbody2D rb2d;
+    private Rigidbody2D _rb2d;
     private SurfaceEffector2D _surfaceEffector;
 
     private readonly float _maxAngularVelocity = 500f;
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        _rb2d = GetComponent<Rigidbody2D>();
         _surfaceEffector = FindObjectOfType<SurfaceEffector2D>();
     }
 
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private void BoostPlayerSpeed()
     {
-        if (rb2d.velocity.magnitude < _boostedSpeed && Input.GetKey(KeyCode.UpArrow))
+        if (_rb2d.velocity.magnitude < _boostedSpeed && Input.GetKey(KeyCode.UpArrow))
         {
             _surfaceEffector.speed = _boostedSpeed;
         }
@@ -52,13 +52,13 @@ public class PlayerController : MonoBehaviour
 
     private void RotatePlayer()
     {
-        if (rb2d.angularVelocity < _maxAngularVelocity && Input.GetKey(KeyCode.LeftArrow))
+        if (_rb2d.angularVelocity < _maxAngularVelocity && Input.GetKey(KeyCode.LeftArrow))
         {
-            rb2d.AddTorque(_torque);
+            _rb2d.AddTorque(_torque);
         }
-        else if (rb2d.angularVelocity > -_maxAngularVelocity && Input.GetKey(KeyCode.RightArrow))
+        else if (_rb2d.angularVelocity > -_maxAngularVelocity && Input.GetKey(KeyCode.RightArrow))
         {
-            rb2d.AddTorque(-_torque);
+            _rb2d.AddTorque(-_torque);
         }
     }
 

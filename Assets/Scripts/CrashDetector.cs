@@ -19,7 +19,7 @@ public class CrashDetector : MonoBehaviour
             FindObjectOfType<PlayerController>().DisableControls();
             PlayAudio();
             _crashEffect.Play();
-            Invoke(nameof(ReloadTheScene), _sceneReloadDelay);
+            Invoke(nameof(LevelFailed), _sceneReloadDelay);
         }
     }
 
@@ -27,7 +27,7 @@ public class CrashDetector : MonoBehaviour
 
     #region Methods
 
-    private void ReloadTheScene()
+    private void LevelFailed()
     {
         SceneManager.LoadScene(0);
     }
